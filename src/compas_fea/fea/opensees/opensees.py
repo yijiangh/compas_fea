@@ -146,7 +146,7 @@ def extract_data(structure, fields):
 
     name = structure.name
     path = structure.path
-    temp = '{0}{1}/'.format(path, name)
+    temp = '{0}{1}{2}'.format(path, name, os.sep)
 
     step    = structure.steps_order[1]
     results = structure.results[step] = {'nodal': {}, 'element': {}}
@@ -175,7 +175,7 @@ def extract_data(structure, fields):
                     nn = [nn]
 
                 for node in nn:
-                    ns = structure.sets[node].selection if isinstance(node, str) else node
+                    ns = structure.sets[node].selection if isinstance(node, str) else [node]
 
                     for ni in ns:
                         for i in 'xyz':
@@ -193,6 +193,7 @@ def extract_data(structure, fields):
             if field in ['u', 'ur', 'rf', 'rm']:
 
                 try:
+                    print('{0}{1}.out'.format(temp, file))
 
                     with open('{0}{1}.out'.format(temp, file), 'r') as f:
                         lines = f.readlines()

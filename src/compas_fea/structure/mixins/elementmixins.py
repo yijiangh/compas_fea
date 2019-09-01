@@ -68,6 +68,12 @@ class ElementMixins(object):
         if len(nodes) == len(set(nodes)):
 
             ekey = self.check_element_exists(nodes)
+            if ekey is not None:
+                # vertex_check_key = self.check_element_exists(nodes)
+                print('Warning: Centroid already found in exisitng element #{}!'.format(ekey))
+                print('The current element connecting nodes #{} is still added, but please check the model carefully.'.format(nodes))
+                ekey = None
+                # input()
 
             if ekey is None:
 
@@ -150,6 +156,9 @@ class ElementMixins(object):
 
         """ Check if an element already exists based on nodes or centroid.
 
+        Note: by default, if no xyz is provided for checking, centroid will by
+        used as geometric key.
+
         Parameters
         ----------
         nodes : list
@@ -169,7 +178,6 @@ class ElementMixins(object):
         - Geometric key check is made according to self.tol [m] tolerance.
 
         """
-
         if not xyz:
             xyz = centroid_points([self.node_xyz(node) for node in nodes])
 

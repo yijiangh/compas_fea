@@ -38,7 +38,7 @@ class Steps(object):
 
         # temp folder
 
-        temp = '{0}{1}/'.format(self.structure.path, self.structure.name)
+        temp = '{0}{1}{2}'.format(self.structure.path, self.structure.name, os.sep)
 
         try:
             os.stat(temp)
@@ -171,7 +171,7 @@ class Steps(object):
 
                             for node in nodes:
 
-                                ns = sets[node].selection if isinstance(node, str) else node
+                                ns = sets[node].selection if isinstance(node, str) else [node]
 
                                 for ni in [i + 1 for i in ns]:
                                     self.write_line('load {0} {1}'.format(ni, compnents))
@@ -561,7 +561,7 @@ class Steps(object):
 
                 node_fields    = ['rf', 'rm', 'u', 'ur', 'cf', 'cm']
                 element_fields = ['sf', 'sm', 'sk', 'se', 's', 'e', 'pe', 'rbfor', 'ctf']
-                
+
                 if 'spf' in fields:
                     fields[fields.index('spf')] = 'ctf'
 
