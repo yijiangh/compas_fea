@@ -1,0 +1,8 @@
+__title__ = 'compas_fea'
+__description__ = 'Add-on for compas related to FEA'
+__url__ = 'https://github.com/compas-dev/compas_fea'
+__version__ = '0.2.0'
+__author__ = 'Block Research Group'
+__author_email__ = 'block@arch.ethz.ch'
+__license__ = 'MIT license'
+__copyright__ = 'Copyright 2018 Block Research Group'
